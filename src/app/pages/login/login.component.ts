@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginModel } from 'src/models/LoginModel';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,21 @@ loginForm!: FormGroup;
 constructor( private formbuilder : FormBuilder,
   private router: Router ) { }
 ngOnInit():void{
+  this.loginForm = this.formbuilder.group(
+    {
+      email: ['', Validators.required, Validators.email],
+      senha: ['', Validators.required]
+    }
+  );
 
 }
+submitLogin()
+{
+  debugger
+  var dadosLogin = this.loginForm.getRawValue() as LoginModel;
 }
+
+}
+
+
+
